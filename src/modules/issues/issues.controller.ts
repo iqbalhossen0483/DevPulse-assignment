@@ -17,8 +17,9 @@ import { Roles } from '../../common/decorators/roles.decorator';
 import { AuthGuard } from '../../common/guards/auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { successResponse } from '../../utils/response';
-import type { IssueFilters, JwtPayload } from '../../utils/types';
+import type { JwtPayload } from '../../utils/types';
 import { CreateIssueDto } from './dto/create-issue.dto';
+import { GetIssuesQueryDto } from './dto/get-issues-query.dto';
 import { UpdateIssueDto } from './dto/update-issue.dto';
 import { IssuesService } from './issues.service';
 
@@ -36,7 +37,7 @@ export class IssuesController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  async findAll(@Query() query: IssueFilters) {
+  async findAll(@Query() query: GetIssuesQueryDto) {
     const issues = await this.issuesService.findAll(query);
     return successResponse('Issues retrived successfully', issues);
   }

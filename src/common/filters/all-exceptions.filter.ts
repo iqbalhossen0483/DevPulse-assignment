@@ -28,7 +28,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
       }
 
       let message = exception.message;
-      let errors: unknown;
 
       if (typeof raw === 'object' && raw !== null) {
         const body = raw as Record<string, unknown>;
@@ -37,7 +36,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
         }
       }
 
-      response.status(status).json(errorResponse(message, errors));
+      response.status(status).json(errorResponse(message));
       return;
     }
 
