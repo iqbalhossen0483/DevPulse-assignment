@@ -1,5 +1,6 @@
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import 'dotenv/config';
 import 'reflect-metadata';
 import { AppModule } from './app.module';
@@ -22,8 +23,22 @@ async function bootstrap() {
     }),
   );
 
+  const config = new DocumentBuilder()
+    .setTitle('DevPulse API')
+    .setDescription('Internal tech issue & feature tracker API')
+    .setVersion('1.0')
+    .addApiKey(
+      { type: 'apiKey', in: 'header', name: 'authorization' },
+      'token',
+    )
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('docs', app, document);
+
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
   console.log(`DevPulse running on port ${port}`);
+  console.log(`Swagger docs at http://localhost:${port}/docs`);
 }
 void bootstrap();
