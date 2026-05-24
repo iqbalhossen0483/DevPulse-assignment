@@ -1,21 +1,21 @@
--- Passwords are bcrypt hashes of 'Password123!'  (salt rounds = 10)
+-- Passwords are bcrypt hashes of '12345678'  (salt rounds = 10)
 INSERT INTO users (name, email, password, role) VALUES
   (
     'Alice Maintainer',
     'alice@devpulse.com',
-    '$2b$10$Q3/5Zl5Xk5JZl5Xk5JZl5OQc5Zl5Xk5JZl5Xk5JZl5Xk5JZl5Xk',
+    '$2a$12$77BrV0X47e48avlszs5yP.Awes35bQliTSmkVVveUkfei5Hr50Cg.',
     'maintainer'
   ),
   (
     'Bob Contributor',
     'bob@devpulse.com',
-    '$2b$10$Q3/5Zl5Xk5JZl5Xk5JZl5OQc5Zl5Xk5JZl5Xk5JZl5Xk5JZl5Xk',
+    '$2a$12$77BrV0X47e48avlszs5yP.Awes35bQliTSmkVVveUkfei5Hr50Cg.',
     'contributor'
   ),
   (
     'Carol Contributor',
     'carol@devpulse.com',
-    '$2b$10$Q3/5Zl5Xk5JZl5Xk5JZl5OQc5Zl5Xk5JZl5Xk5JZl5Xk5JZl5Xk',
+    '$$2a$12$77BrV0X47e48avlszs5yP.Awes35bQliTSmkVVveUkfei5Hr50Cg.',
     'contributor'
   )
 ON CONFLICT (email) DO NOTHING;
