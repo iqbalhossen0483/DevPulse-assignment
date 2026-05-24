@@ -1,11 +1,15 @@
 import type { Request } from 'express';
 
+export type UserRole = 'contributor' | 'maintainer';
+export type IssueType = 'bug' | 'feature_request';
+export type IssueStatus = 'open' | 'in_progress' | 'resolved';
+
 export interface User {
   id: number;
   name: string;
   email: string;
   password: string;
-  role: 'contributor' | 'maintainer';
+  role: UserRole;
   created_at: Date;
   updated_at: Date;
 }
@@ -16,8 +20,8 @@ export interface Issue {
   id: number;
   title: string;
   description: string;
-  type: 'bug' | 'feature_request';
-  status: 'open' | 'in_progress' | 'resolved';
+  type: IssueType;
+  status: IssueStatus;
   reporter_id: number;
   created_at: Date;
   updated_at: Date;
@@ -26,7 +30,7 @@ export interface Issue {
 export interface ReporterInfo {
   id: number;
   name: string;
-  role: 'contributor' | 'maintainer';
+  role: UserRole;
 }
 
 export interface IssueWithReporter extends Omit<Issue, 'reporter_id'> {
@@ -36,7 +40,7 @@ export interface IssueWithReporter extends Omit<Issue, 'reporter_id'> {
 export interface JwtPayload {
   id: number;
   name: string;
-  role: 'contributor' | 'maintainer';
+  role: UserRole;
 }
 
 export interface AuthRequest extends Request {
@@ -45,6 +49,6 @@ export interface AuthRequest extends Request {
 
 export interface IssueFilters {
   sort?: 'newest' | 'oldest';
-  type?: 'bug' | 'feature_request';
-  status?: 'open' | 'in_progress' | 'resolved';
+  type?: IssueType;
+  status?: IssueStatus;
 }
