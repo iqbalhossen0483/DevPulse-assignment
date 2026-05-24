@@ -15,7 +15,7 @@ INSERT INTO users (name, email, password, role) VALUES
   (
     'Carol Contributor',
     'carol@devpulse.com',
-    '$$2a$12$77BrV0X47e48avlszs5yP.Awes35bQliTSmkVVveUkfei5Hr50Cg.',
+    '$2a$12$77BrV0X47e48avlszs5yP.Awes35bQliTSmkVVveUkfei5Hr50Cg.',
     'contributor'
   )
 ON CONFLICT (email) DO NOTHING;
