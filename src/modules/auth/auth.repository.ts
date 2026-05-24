@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Pool } from 'pg';
-import type { User, SafeUser, UserRole } from '../../utils/types';
+import type { SafeUser, User, UserRole } from '../../utils/types';
 
 @Injectable()
 export class AuthRepository {
