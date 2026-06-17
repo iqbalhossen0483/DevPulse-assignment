@@ -1,11 +1,11 @@
-import 'reflect-metadata';
-import 'dotenv/config';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import 'dotenv/config';
 import express, { Express } from 'express';
 import type { IncomingMessage, ServerResponse } from 'http';
+import 'reflect-metadata';
 import { AppModule } from '../src/app.module';
 import { AllExceptionsFilter } from '../src/common/filters/all-exceptions.filter';
 import { errorResponse } from '../src/utils/response';
@@ -41,7 +41,13 @@ async function bootstrap(): Promise<Express> {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document);
+  SwaggerModule.setup('docs', app, document, {
+    customCssUrl: 'https://unpkg.com/swagger-ui-dist@5/swagger-ui.css',
+    customJs: [
+      'https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js',
+      'https://unpkg.com/swagger-ui-dist@5/swagger-ui-standalone-preset.js',
+    ],
+  });
 
   await app.init();
   cachedApp = server;

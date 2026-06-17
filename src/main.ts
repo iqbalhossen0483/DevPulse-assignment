@@ -27,10 +27,7 @@ async function bootstrap() {
     .setTitle('DevPulse API')
     .setDescription('Internal tech issue & feature tracker API')
     .setVersion('1.0')
-    .addApiKey(
-      { type: 'apiKey', in: 'header', name: 'authorization' },
-      'token',
-    )
+    .addApiKey({ type: 'apiKey', in: 'header', name: 'authorization' }, 'token')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
